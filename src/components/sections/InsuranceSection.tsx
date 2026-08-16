@@ -1,82 +1,74 @@
 'use client';
 
-import { useState } from 'react';
-import { Search, ShieldCheck } from 'lucide-react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 import { useLanguageStore } from '@/store/language-store';
-import { SectionHeading } from '@/components/ui-custom/SectionHeading';
-import { AnimatedSection } from '@/components/ui-custom/AnimatedSection';
-import { insuranceProviders } from '@/data/hospital-data';
 
 export function InsuranceSection() {
-  const { t, language } = useLanguageStore();
+  const { language } = useLanguageStore();
   const isRTL = language === 'ar';
-  const [searchValue, setSearchValue] = useState('');
-
-  const filteredProviders = insuranceProviders.filter((provider) =>
-    provider.toLowerCase().includes(searchValue.toLowerCase())
-  );
 
   return (
-    <section id="insurance" className="py-16 md:py-24">
+    <section id="insurance" className="py-12 sm:py-16 lg:py-20 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left */}
-          <AnimatedSection>
-            <div className={isRTL ? 'text-right' : 'text-left'}>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-deep-navy mb-4">
-                {t('insurance.title')}
-              </h2>
-              <div className={`w-16 h-1 bg-hospital-blue rounded-full mb-4 ${isRTL ? 'ml-auto' : ''}`} />
-              <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-                {t('insurance.subtitle')}
-              </p>
+        
+        {/* Banner Card Container */}
+        <div className="relative rounded-3xl overflow-hidden shadow-xl bg-[#034C60] min-h-[320px] sm:min-h-[360px] lg:min-h-[400px] flex items-center">
+          
+          {/* Background Family Image */}
+          <div className={`absolute top-0 bottom-0 w-full md:w-3/5 lg:w-1/2 h-full z-0 ${isRTL ? 'left-0' : 'right-0'}`}>
+            <img
+              src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1200&q=80"
+              alt={isRTL ? 'التأمين والباقات الصحية' : 'Insurance & Health Packages'}
+              className="w-full h-full object-cover object-center"
+            />
+          </div>
+
+          {/* Smooth Gradient Overlay */}
+          <div
+            className={`absolute inset-0 z-10 w-full md:w-4/5 ${
+              isRTL
+                ? 'bg-gradient-to-l from-[#034C60] via-[#034C60]/95 via-60% to-transparent'
+                : 'bg-gradient-to-r from-[#034C60] via-[#034C60]/95 via-60% to-transparent'
+            }`}
+          />
+
+          {/* Banner Text Content */}
+          <div className={`relative z-20 p-8 sm:p-12 lg:p-16 max-w-xl lg:max-w-2xl ${isRTL ? 'text-right' : 'text-left'}`}>
+            
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-bold text-white tracking-tight font-heading leading-tight mb-3 sm:mb-4">
+              {isRTL ? 'التأمين والباقات الصحية' : 'Insurance & Health Packages'}
+            </h2>
+
+            <p className="text-sm sm:text-base lg:text-lg text-white/90 font-normal leading-relaxed mb-6 sm:mb-8 max-w-xl">
+              {isRTL
+                ? 'نتعاون مع معظم شركات التأمين الرئيسية في الكويت. تحقق من تغطيتك التأمينية أو استكشف باقاتنا الصحية.'
+                : 'We are empanelled with most major insurance companies in Kuwait. Check your coverage or explore our health packages.'}
+            </p>
+
+            {/* Buttons Row */}
+            <div className={`flex flex-wrap items-center gap-3.5 sm:gap-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
+              
+              {/* Check Your Insurance Pill Button */}
+              <a
+                href="#insurance"
+                className="bg-white text-[#034C60] hover:bg-white/90 rounded-full px-6 sm:px-8 py-2.5 sm:py-3 text-xs sm:text-sm font-bold shadow-md transition-all cursor-pointer text-center"
+              >
+                {isRTL ? 'تحقق من التأمين' : 'Check Your Insurance'}
+              </a>
+
+              {/* View Packages Outline Pill Button */}
+              <a
+                href="#packages"
+                className="border-2 border-white/80 text-white hover:bg-white/10 rounded-full px-6 sm:px-8 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold transition-all cursor-pointer text-center"
+              >
+                {isRTL ? 'استكشف الباقات' : 'View Packages'}
+              </a>
+
             </div>
-          </AnimatedSection>
 
-          {/* Right: Search */}
-          <AnimatedSection delay={0.15}>
-            <div className="bg-white rounded-2xl border border-gray-100 shadow-lg p-6 md:p-8">
-              <div className={`flex gap-3 mb-6 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                <div className="relative flex-1">
-                  <Search className={`absolute top-1/2 -translate-y-1/2 size-4 text-muted-foreground ${isRTL ? 'right-3' : 'left-3'}`} />
-                  <Input
-                    value={searchValue}
-                    onChange={(e) => setSearchValue(e.target.value)}
-                    placeholder={t('insurance.searchPlaceholder')}
-                    className={`h-11 ${isRTL ? 'pr-10 text-right' : 'pl-10'} border-gray-200 focus:border-hospital-blue`}
-                  />
-                </div>
-                <Button className="bg-hospital-blue hover:bg-hospital-blue/90 text-white font-medium px-6 shrink-0">
-                  {t('insurance.checkCoverage')}
-                </Button>
-              </div>
+          </div>
 
-              {/* Provider info */}
-              <div className={`text-center mb-6 ${isRTL ? 'text-right' : 'text-left'}`}>
-                <p className="text-sm text-muted-foreground">
-                  {t('insurance.partneredWith')}{' '}
-                  <span className="text-hospital-blue font-semibold text-lg">{filteredProviders.length}+</span>{' '}
-                  {t('insurance.insuranceProviders')}
-                </p>
-              </div>
-
-              {/* Provider logos/names */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {filteredProviders.slice(0, 8).map((provider) => (
-                  <div
-                    key={provider}
-                    className="flex items-center justify-center gap-2 bg-gray-50 rounded-lg p-3 border border-gray-100 hover:border-hospital-blue/30 transition-colors"
-                  >
-                    <ShieldCheck className="size-4 text-hospital-blue" />
-                    <span className="text-xs font-medium text-deep-navy truncate">{provider}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </AnimatedSection>
         </div>
+
       </div>
     </section>
   );

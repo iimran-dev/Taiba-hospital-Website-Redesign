@@ -3,17 +3,13 @@ import { Footer } from '@/components/layout/Footer';
 import { MobileBottomNav } from '@/components/layout/MobileBottomNav';
 import { WhatsAppFloat } from '@/components/layout/WhatsAppFloat';
 import { HeroSection } from '@/components/sections/HeroSection';
-import { CareSearch } from '@/components/sections/CareSearch';
-import { QuickAccess } from '@/components/sections/QuickAccess';
 import { WhyChooseTaiba } from '@/components/sections/WhyChooseTaiba';
 import { CentersOfExcellence } from '@/components/sections/CentersOfExcellence';
 import { FindDoctorSection } from '@/components/sections/FindDoctorSection';
 import { StatisticsSection } from '@/components/sections/StatisticsSection';
 import { InsuranceSection } from '@/components/sections/InsuranceSection';
-import { HealthPackages } from '@/components/sections/HealthPackages';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { HealthArticles } from '@/components/sections/HealthArticles';
-import { MobileAppSection } from '@/components/sections/MobileAppSection';
 import { FinalCTA } from '@/components/sections/FinalCTA';
 
 export default function Home() {
@@ -40,9 +36,6 @@ export default function Home() {
         {/* Insurance */}
         <InsuranceSection />
 
-        {/* Health Packages */}
-        <HealthPackages />
-
         {/* Testimonials */}
         <TestimonialsSection />
 
@@ -50,7 +43,7 @@ export default function Home() {
         <HealthArticles />
 
         {/* Mobile App */}
-        <MobileAppSection />
+        {/* <MobileAppSection /> */}
 
         {/* Final CTA */}
         <FinalCTA />
