@@ -22,12 +22,8 @@ export default function Home() {
       <Header />
 
       <main className="flex-1 pb-20 md:pb-0">
-        {/* Hero + Care Search (overlapping) */}
+        {/* Hero Section (includes Care Search & Quick Access Bar) */}
         <HeroSection />
-        <CareSearch />
-
-        {/* Quick Access Cards */}
-        <QuickAccess />
 
         {/* Why Choose Taiba */}
         <WhyChooseTaiba />
